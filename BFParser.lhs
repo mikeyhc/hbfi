@@ -50,6 +50,10 @@
 >	| x == '<'  = if ptr - 1 < 0 
 >		then BFError $ BFPointerOutOfRange (-1)
 >		else bfparse xs (ptr-1, mem, output)
+>	| x == '\n' = bfparse xs yy
+>	| x == '\r' = bfparse xs yy
+>	| x == '\t' = bfparse xs yy
+>	| x == ' '  = bfparse xs yy
 >	| otherwise = BFError $ BFUnknownInstruction x
 >	where
 >		eat :: Program -> Int -> Maybe Program
